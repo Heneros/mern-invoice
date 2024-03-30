@@ -1,25 +1,37 @@
 version: "3.9"
 
-
 services:
-  api:
-    restart: always
-    build:
-      context: .
-      dockerfile: ./docker/local/express/Dockerfile
-    volumes:
-      - /app/node_modules
-      - .:/app
-    depends_on:
-      - mongodb
-    ports:
-      - "1997:1997"
-    environment:
-       NODE_ENV: ${NODE_ENV}
-       MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
-    networks:
-      - invoice
-  mongodb:
+    api:
+        restart: always
+        build:
+            context: .
+            dockerfile: ./docker/local/express/Dockerfile
+        volumes:
+            - /app/node_modules
+            - .:/app
+        depends_on:
+            - mongodb
+        # ports:
+        #     - "1997:1997"
+        environment:
+            NODE_ENV: ${NODE_ENV}
+            MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
+            FORCE_COLOR: 1
+        networks:
+            - invoice
+
+    client:
+        build:
+            context: ./client
+            dockerfile: ./docker/local/Dockerfile
+        restart: on-failure
+        volumes:
+            - ./client:/app
+            - /app/node_modules
+        networks:
+            - invoice
+
+    mongodb:
         image: mongo:5.0.6-focal
         restart: always
         ports:
@@ -31,7 +43,8 @@ services:
             - mongodb-data:/data/db
         networks:
             - invoice
-  mongo-express:
+
+    mongo-express:
         image: mongo-express:0.54.0
         depends_on:
             - mongodb
@@ -45,16 +58,35 @@ services:
             ME_CONFIG_BASICAUTH_PASSWORD: admin123456
         networks:
             - invoice
-  mailhog:
+
+    mailhog:
         image: mailhog/mailhog:v1.0.0
         ports:
             - "8025:8025"
             - "1025:1025"
         networks:
-            - invoice         
-networks: 
-  invoice:
-   driver: bridge
-  
+            - invoice
+
+    nginx:
+        build:
+            context: ./docker/local/nginx
+            dockerfile: Dockerfile
+        ports:
+            - "8080:80"
+        restart: always
+        depends_on:
+            - api
+        volumes:
+            - static_volume:/app/staticfiles
+            - pdf_volume:/app/docs
+        networks:
+            - invoice
+
+networks:
+    invoice:
+        driver: bridge
+
 volumes:
-  mongodb-data:
+    mongodb-data:
+    static_volume:
+    pdf_volume:
