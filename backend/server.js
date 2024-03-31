@@ -6,6 +6,8 @@ import morgan from "morgan";
 import connectionToDB from "./config/connectDB.js";
 
 import { morganMiddleware, systemLogs } from "./utils/Logger.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+
 import mongoSanitize from "express-mongo-sanitize";
 
 await connectionToDB();
@@ -21,6 +23,9 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 
 app.use(morganMiddleware);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.get("/api/v1/test", (req, res) => {
   res.json({ Hi: "Hello World" });
