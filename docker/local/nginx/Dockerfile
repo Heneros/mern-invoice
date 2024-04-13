@@ -1,4 +1,4 @@
-FROM nginx:1.21.3-alpine
+FROM nginx:1.24.0
 
 RUN rm /etc/nginx/conf.d/default.conf
 

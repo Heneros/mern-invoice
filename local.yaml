@@ -1,0 +1,85 @@
+version: "3.9"
+
+services:
+  backend:
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./docker/local/express/Dockerfile
+    volumes:
+      - /app/node_modules
+      - .:/app
+    networks:
+      - mernshop
+    ports:
+      - "1997:1997"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./docker/local/Dockerfile
+    restart: always
+    volumes:
+            - ./frontend:/app
+            - /app/node_modules
+    networks:
+       - mernshop
+  
+  mongodb:
+      image: mongo:5.0.6-focal
+      restart: always
+      ports:
+        - "27017:27017"
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      volumes:
+        - mongodb-data:/data/db
+      networks:
+        - mernshop
+        
+  mongo-express:
+    image: mongo-express:0.54.0
+    depends_on:
+         - mongodb
+    ports:
+        - "8081:8081"
+    environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USERNAME}
+            ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
+            ME_CONFIG_MONGODB_SERVER: mongodb
+            ME_CONFIG_BASICAUTH_USERNAME: admin
+            ME_CONFIG_BASICAUTH_PASSWORD: admin123456
+    networks:
+        - mernshop
+    
+  mailhog:
+        image: mailhog/mailhog:v1.0.0
+        ports:
+            - "8025:8025"
+            - "1025:1025"
+        networks:
+            - mernshop
+
+  nginx:
+    build:  
+      context: ./docker/local/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    depends_on:
+      - backend
+    volumes:
+      - static_volume:/app/staticfiles
+    networks:
+      - mernshop
+
+networks:
+  mernshop:
+    driver: bridge
+
+volumes:
+  mongodb-data:
+  static_volume:
+

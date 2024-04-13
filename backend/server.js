@@ -1,47 +1,20 @@
-import chalk from "chalk";
-import cookieParser from "cookie-parser";
-import "dotenv/config";
+import path from "path";
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 import express from "express";
-import morgan from "morgan";
-import connectionToDB from "./config/connectDB.js";
 
-import { morganMiddleware, systemLogs } from "./utils/Logger.js";
-import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
-
-import mongoSanitize from "express-mongo-sanitize";
-import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import { apiLimiter } from "./middleware/apiLimit.js";
-
-await connectionToDB();
 const app = express();
+const port = process.env.devPORT || 1997;
 
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(mongoSanitize());
-
-app.use(morganMiddleware);
-
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/user", apiLimiter, userRoutes);
-
-app.use(notFound);
-app.use(errorHandler);
-
-app.get("/api/v1/test", (req, res) => {
-  res.json({ Hi: "Hello World" });
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World333</h1>");
 });
 
-const PORT = process.env.PORT || 1997;
+const start = async () => {
+  try {
+    await app.listen(port, console.log(`Working ${port} on port`));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  systemLogs.info(
-    `Server running in ${process.env.NODE_ENV} on port ${PORT}    `
-  );
-});
+start();
