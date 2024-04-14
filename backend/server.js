@@ -11,8 +11,12 @@ import mongoSanitize from "express-mongo-sanitize";
 import cookieParser from "cookie-parser";
 import connectionToDB from "./config/connectDB.js";
 import { morganMiddleware, systemLogs } from "./utils/Logger.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
+
+const __dirname = path.resolve();
+
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -24,19 +28,27 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(mongoSanitize());
-app.use(morganMiddleware());
+// app.use(morganMiddleware());
 
 const port = process.env.devPORT || 1997;
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello World333</h1>");
-});
+app.use(notFound);
+app.use(errorHandler);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => res.send("<h1>Hello World</h1>"));
+}
 
 const start = async () => {
   try {
-    app.listen(port, console.log(`Working ${port} on port`));
-    await connectionToDB();
-    systemLogs.info(`Server running in ${process.env.NODE_ENV} ON ${port} `)
+    app.listen(port, console.log(`Working ${port} on port $`));
+    // await connectionToDB();
+    systemLogs.info(`Server running in ${process.env.NODE_ENV} ON ${port} `);
   } catch (error) {
     console.error(error);
   }

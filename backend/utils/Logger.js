@@ -43,7 +43,7 @@ export const morganMiddleware = morgan(
     stream: {
       write: (message) => {
         const data = JSON.parse(message);
-        systemLogs.http("incoming-request", data);
+        systemLogs.http(`incoming-request`, data);
       },
     },
   }
