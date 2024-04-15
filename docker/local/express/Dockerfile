@@ -1,9 +1,14 @@
-FROM  node:20-alpine3.17
+FROM  node:20.10.0
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json .
 
 RUN npm install
 
-CMD ["npm", "start"]
+COPY . .
+
+EXPOSE 1998
+
+
+CMD [ "npm","run","server" ]

@@ -1,4 +1,4 @@
-// import path from "path";
+import path from "path";
 
 import "dotenv/config";
 // import dotenv from "dotenv";
@@ -14,9 +14,8 @@ import { morganMiddleware, systemLogs } from "./utils/Logger.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
-
+app.get("/", (req, res) => res.send("<h1>Hello World</h1>"));
 const __dirname = path.resolve();
-
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -46,8 +45,8 @@ if (process.env.NODE_ENV === "production") {
 
 const start = async () => {
   try {
-    app.listen(port, console.log(`Working ${port} on port $`));
-    // await connectionToDB();
+    app.listen(port, () => console.log(`Working ${port} on port`));
+    await connectionToDB();
     systemLogs.info(`Server running in ${process.env.NODE_ENV} ON ${port} `);
   } catch (error) {
     console.error(error);

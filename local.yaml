@@ -17,7 +17,7 @@ services:
     networks:
       - mernshop
     ports:
-      - "1997:1997"
+      - "1998:1998"
 
   frontend:
     build:
