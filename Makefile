@@ -6,3 +6,6 @@ up:
 
 down:
 	docker compose -f local.yaml down
+
+show-logs-backend:
+	docker compose -f local.yaml logs backend

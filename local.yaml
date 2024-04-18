@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 
 services:
   backend:
@@ -13,9 +13,9 @@ services:
       - mongodb
     environment:
       NODE_ENV: ${NODE_ENV}
-      MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
+      MONGO_URI: ${MONGO_URI}
     networks:
-      - mernshop
+      - mern-invoice_mernshop
     ports:
       - "1998:1998"
 
@@ -28,11 +28,12 @@ services:
             - ./frontend:/app
             - /app/node_modules
     networks:
-       - mernshop
+       - mern-invoice_mernshop
   
   mongodb:
-      image: mongo:5.0.6-focal
+      image: mongo
       restart: always
+      container_name: mongo-db
       ports:
         - "27017:27017"
       environment:
@@ -41,7 +42,7 @@ services:
       volumes:
         - mongodb-data:/data/db
       networks:
-        - mernshop
+        - mern-invoice_mernshop
         
   mongo-express:
     image: mongo-express:0.54.0
@@ -56,7 +57,7 @@ services:
             ME_CONFIG_BASICAUTH_USERNAME: admin
             ME_CONFIG_BASICAUTH_PASSWORD: admin123456
     networks:
-        - mernshop
+        - mern-invoice_mernshop
     
   mailhog:
         image: mailhog/mailhog:v1.0.0
@@ -64,7 +65,7 @@ services:
             - "8025:8025"
             - "1025:1025"
         networks:
-            - mernshop
+            - mern-invoice_mernshop
 
   nginx:
     build:  
@@ -78,10 +79,10 @@ services:
     volumes:
       - static_volume:/app/staticfiles
     networks:
-      - mernshop
+      - mern-invoice_mernshop
 
 networks:
-  mernshop:
+  mern-invoice_mernshop:
     driver: bridge
 
 volumes:

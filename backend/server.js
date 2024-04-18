@@ -12,10 +12,18 @@ import cookieParser from "cookie-parser";
 import connectionToDB from "./config/connectDB.js";
 import { morganMiddleware, systemLogs } from "./utils/Logger.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+import mongoose from "mongoose";
+
+// await connectionToDB();
+
+mongoose
+  .connect("mongodb://mongo-db/mernproject")
+  .then(() => console.log("Connected to db"))
+  .catch(() => console.log("Not connected"));
 
 const app = express();
 
-app.get("/", (req, res) => res.send("<h1>Hello World!!!</h1>"));
+app.get("/", (req, res) => res.send("<h1>Hello World!!44!</h1>"));
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "development") {
@@ -23,21 +31,15 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(mongoSanitize());
 // app.use(morganMiddleware());
 
-console.log(123);
+console.log(555);
 
-const port = process.env.devPORT || 1997;
-
-app.use(notFound);
-app.use(errorHandler);
-
-console.log(process.env.MONGO_URI);
+// console.log(process.env.MONGO_URI);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend/build")));
@@ -48,10 +50,14 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => res.send("<h1>Hello World</h1>"));
 }
 
+app.use(notFound);
+app.use(errorHandler);
+const port = process.env.devPORT || 1997;
+
 const start = async () => {
   try {
     app.listen(port, console.log(`Working ${port} on port`));
-    await connectionToDB();
+    //
     systemLogs.info(`Server running in ${process.env.NODE_ENV} ON ${port} `);
   } catch (error) {
     console.error(error);
