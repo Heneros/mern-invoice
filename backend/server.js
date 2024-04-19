@@ -12,18 +12,12 @@ import cookieParser from "cookie-parser";
 import connectionToDB from "./config/connectDB.js";
 import { morganMiddleware, systemLogs } from "./utils/Logger.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
-import mongoose from "mongoose";
 
-// await connectionToDB();
-
-mongoose
-  .connect("mongodb://mongo-db/mernproject")
-  .then(() => console.log("Connected to db"))
-  .catch(() => console.log("Not connected"));
+await connectionToDB();
 
 const app = express();
 
-app.get("/", (req, res) => res.send("<h1>Hello World!!44!</h1>"));
+app.get("/", (req, res) => res.send("<h1>Hello World!!</h1>"));
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "development") {
@@ -37,7 +31,7 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 // app.use(morganMiddleware());
 
-console.log(555);
+// console.log(555);
 
 // console.log(process.env.MONGO_URI);
 
@@ -57,7 +51,6 @@ const port = process.env.devPORT || 1997;
 const start = async () => {
   try {
     app.listen(port, console.log(`Working ${port} on port`));
-    //
     systemLogs.info(`Server running in ${process.env.NODE_ENV} ON ${port} `);
   } catch (error) {
     console.error(error);

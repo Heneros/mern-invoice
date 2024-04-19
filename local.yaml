@@ -6,6 +6,8 @@ services:
     build: 
       context: .
       dockerfile: ./docker/local/express/Dockerfile
+      args:
+        BUILDKIT_INLINE_CACHE: 1
     volumes:
       - /app/node_modules
       - .:/app
@@ -14,10 +16,14 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGO_URI: ${MONGO_URI}
+      WATCHPACK_POLLING: true
+      CHOKIDAR_USEPOLLING: true
     networks:
       - mern-invoice_mernshop
     ports:
       - "1998:1998"
+    command: npm run server
+
 
   frontend:
     build:
