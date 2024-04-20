@@ -17,7 +17,7 @@ await connectionToDB();
 
 const app = express();
 
-app.get("/", (req, res) => res.send("<h1>Hello World!!</h1>"));
+app.get("/", (req, res) => res.send("<h1>Hello World 123!!</h1>"));
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "development") {
