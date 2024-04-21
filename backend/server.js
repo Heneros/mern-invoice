@@ -10,14 +10,14 @@ import morgan from "morgan";
 import mongoSanitize from "express-mongo-sanitize";
 import cookieParser from "cookie-parser";
 import connectionToDB from "./config/connectDB.js";
-import { morganMiddleware, systemLogs } from "./utils/Logger.js";
+import { systemLogs } from "./utils/Logger.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 await connectionToDB();
 
 const app = express();
 
-app.get("/", (req, res) => res.send("<h1>Hello World 123!!</h1>"));
+app.get("/", (req, res) => res.send("<h1>Hello World 1235!!</h1>"));
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "development") {
@@ -30,6 +30,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(mongoSanitize());
 // app.use(morganMiddleware());
+
+app.get("/api/v1/test", (req, res) => {
+  res.json({ message: "Hello Word" });
+});
 
 // console.log(555);
 

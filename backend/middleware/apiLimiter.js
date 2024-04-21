@@ -18,18 +18,18 @@ export const apiLimiter = rateLimit({
 });
 
 export const loginLimiter = rateLimit({
-    windowMs: 30 * 60 * 1000,
-	max: 20,
-	message: {
-		message:
-			"Too many login attempts from this IP address, please try again after 30 minutes",
-	},
-	handler: (req, res, next, options) => {
-		systemLogs.error(
-			`Too many requests: ${options.message.message}\t${req.method}\t${req.url}\t${req.headers.origin}`
-		);
-		res.status(options.statusCode).send(options.message);
-	},
-	standardHeaders: true, ///Стандартные заголовки 
-	legacyHeaders: false,  ///Устаревшие заголовки
-})
+  windowMs: 30 * 60 * 1000,
+  max: 20,
+  message: {
+    message:
+      "Too many login attempts from this IP address, please try again after 30 minutes",
+  },
+  handler: (req, res, next, options) => {
+    systemLogs.error(
+      `Too many requests: ${options.message.message}\t${req.method}\t${req.url}\t${req.headers.origin}`
+    );
+    res.status(options.statusCode).send(options.message);
+  },
+  standardHeaders: true, ///Стандартные заголовки
+  legacyHeaders: false, ///Устаревшие заголовки
+});

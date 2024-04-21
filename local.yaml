@@ -9,6 +9,7 @@ services:
       args:
         BUILDKIT_INLINE_CACHE: 1
     volumes:
+      - ./backend:/app
       - /app/node_modules
       - .:/app
     depends_on:
@@ -23,6 +24,7 @@ services:
     ports:
       - "1998:1998"
     command: npm run server
+    
 
 
   frontend:

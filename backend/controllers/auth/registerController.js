@@ -87,3 +87,5 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   }
 });
+
+export default registerUser;
