@@ -9,11 +9,10 @@ import express from "express";
 import morgan from "morgan";
 import mongoSanitize from "express-mongo-sanitize";
 import cookieParser from "cookie-parser";
-import connectionToDB from "./config/connectDB.js";
+import connectDB from "./config/connectDB.js";
 import { systemLogs } from "./utils/Logger.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
-
-await connectionToDB();
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 
@@ -34,7 +33,7 @@ app.use(mongoSanitize());
 app.get("/api/v1/test", (req, res) => {
   res.json({ message: "Hello Word" });
 });
-
+app.use("/api/v1/auth", authRoutes);
 // console.log(555);
 
 // console.log(process.env.MONGO_URI);
@@ -51,10 +50,12 @@ if (process.env.NODE_ENV === "production") {
 app.use(notFound);
 app.use(errorHandler);
 const port = process.env.devPORT || 1997;
+const MONGO_URI = `mongodb://${process.env.MONGO_ROOT_USERNAME}:${process.env.MONGO_ROOT_PASSWORD}@mongodb/mernproject`;
 
 const start = async () => {
   try {
     app.listen(port, console.log(`Working ${port} on port`));
+    await connectDB(MONGO_URI);
     systemLogs.info(`Server running in ${process.env.NODE_ENV} ON ${port} `);
   } catch (error) {
     console.error(error);

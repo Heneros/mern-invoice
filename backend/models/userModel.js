@@ -2,8 +2,9 @@ import bcrypt from "bcryptjs";
 import "dotenv/config";
 import mongoose from "mongoose";
 import validator from "validator";
-
 import { USER } from "../constants/index.js";
+
+const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
@@ -48,15 +49,15 @@ const userSchema = new Schema(
     password: {
       type: String,
       select: false,
-      validate: [
-        validator.isStrongPassword,
-        "Password must be at least 8 characters long, with at least 1 uppercase and lowercase letters and at least 1 symbol",
-      ],
+      // validate: [
+      //   validator.isStrongPassword,
+      //   "Password must be at least 8 characters long, with at least 1 uppercase and lowercase letters and at least 1 symbol",
+      // ],
     },
     passwordConfirm: {
       type: String,
       validate: {
-        validate: function (value) {
+        validator: function (value) {
           return value === this.password;
         },
         message: "Passwords do not match",

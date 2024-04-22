@@ -16,7 +16,9 @@ services:
       - mongodb
     environment:
       NODE_ENV: ${NODE_ENV}
-      MONGO_URI: ${MONGO_URI}
+      MONGO_ROOT_USERNAME: 033136d6d2fe94034ee2
+      MONGO_ROOT_PASSWORD: 46fe88eeada4fdb8ea9c9e227cc3db28f9d1df4f21666539602678afa46a3955
+      MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb/mernproject
       WATCHPACK_POLLING: true
       CHOKIDAR_USEPOLLING: true
     networks:
@@ -53,7 +55,7 @@ services:
         - mern-invoice_mernshop
         
   mongo-express:
-    image: mongo-express:0.54.0
+    image: mongo-express:latest
     depends_on:
          - mongodb
     ports:

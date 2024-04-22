@@ -2,7 +2,7 @@ import "dotenv/config";
 import nodemailer from "nodemailer";
 import mg from "nodemailer-mailgun-transport";
 
-let transport;
+let transporter;
 
 if (process.env.NODE_ENV === "development") {
   transporter = nodemailer.createTransport({
@@ -18,4 +18,4 @@ if (process.env.NODE_ENV === "development") {
   };
   transporter = nodemailer.createTransport(mg(mailgunAuth));
 }
-export default transport;
+export default transporter;
