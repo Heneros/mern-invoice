@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(notFound);
 app.use(errorHandler);
-const port = process.env.devPORT || 1997;
+const port = process.env.PORT || 1997;
 const MONGO_URI = `mongodb://${process.env.MONGO_ROOT_USERNAME}:${process.env.MONGO_ROOT_PASSWORD}@mongodb/mernproject`;
 
 const start = async () => {

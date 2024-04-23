@@ -23,7 +23,7 @@ const sendEmail = async (email, subject, payload, template) => {
       subject: subject,
       html: compliedTemplate(payload),
     };
-    await transporter.sendEmail(emailOptions);
+    await transporter.sendMail(emailOptions);
   } catch (error) {
     systemLogs.error(`email not sent: ${error}`);
   }

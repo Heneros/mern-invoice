@@ -18,4 +18,5 @@ if (process.env.NODE_ENV === "development") {
   };
   transporter = nodemailer.createTransport(mg(mailgunAuth));
 }
+
 export default transporter;

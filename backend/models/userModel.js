@@ -20,13 +20,13 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       trim: true,
-      validate: {
-        validator: function (value) {
-          return /^[A-z][A-z0-9-_]{3, 23}$/.test(value);
-        },
-        message:
-          "username must be alphanumeric,without special characters.Hyphens and underscores allowed",
-      },
+      // validate: {
+      //   validator: function (value) {
+      //     return /^[A-z][A-z0-9-_]{3, 23}$/.test(value);
+      //   },
+      //   message:
+      //     "username must be alphanumeric,without special characters.Hyphens and underscores allowed",
+      // },
     },
     firstName: {
       type: String,
