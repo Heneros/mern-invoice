@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 import User from "../../models/userModel.js";
 import { systemLogs } from "../../utils/Logger.js";
 
-///$-title
-///$-path POST /api/v1/auth/login
-///$-auth Public
+// $-title   Login User, get access and refresh tokens
+// $-path    POST /api/v1/auth/login
+// $-auth    Public
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -46,6 +46,7 @@ const loginUser = asyncHandler(async (req, res) => {
       process.env.JWT_ACCESS_SECRET_KEY,
       { expiresIn: "10m" }
     );
+
     const newRefreshToken = jwt.sign(
       {
         id: existingUser._id,
@@ -106,6 +107,5 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid credentials provided");
   }
 });
-
 
 export default loginUser;

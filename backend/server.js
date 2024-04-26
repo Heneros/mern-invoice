@@ -13,6 +13,9 @@ import connectDB from "./config/connectDB.js";
 import { systemLogs } from "./utils/Logger.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/userRoutes.js";
+
+import { apiLimiter } from "./middleware/apiLimiter.js";
 
 const app = express();
 
@@ -24,16 +27,18 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(mongoSanitize());
+
 // app.use(morganMiddleware());
 
 app.get("/api/v1/test", (req, res) => {
   res.json({ message: "Hello Word" });
 });
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", apiLimiter, userRoutes);
 // console.log(555);
 
 // console.log(process.env.MONGO_URI);
