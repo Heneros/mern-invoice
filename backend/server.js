@@ -19,7 +19,7 @@ import { apiLimiter } from "./middleware/apiLimiter.js";
 
 const app = express();
 
-app.get("/", (req, res) => res.send("<h1>Hello World 1235!!</h1>"));
+app.get("/", (req, res) => res.send("<h1>Hello World!5512</h1>"));
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "development") {
@@ -35,7 +35,7 @@ app.use(mongoSanitize());
 // app.use(morganMiddleware());
 
 app.get("/api/v1/test", (req, res) => {
-  res.json({ message: "Hello Word" });
+  res.json({ message: "Hello Word " });
 });
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", apiLimiter, userRoutes);
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
 } else {
-  app.get("/", (req, res) => res.send("<h1>Hello World</h1>"));
+  app.get("/", (req, res) => res.send("<h1>Hello 213</h1>"));
 }
 
 app.use(notFound);

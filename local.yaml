@@ -35,8 +35,13 @@ services:
       dockerfile: ./docker/local/Dockerfile
     restart: always
     volumes:
-            - ./frontend:/app
-            - /app/node_modules
+        - ./frontend:/app
+        - /app/node_modules
+    environment:
+       - WATCHPACK_POLLING=true
+       - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000"
     networks:
        - mern-invoice_mernshop
   
