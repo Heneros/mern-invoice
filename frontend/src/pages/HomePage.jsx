@@ -46,9 +46,7 @@ const HomePage = () => {
 								gutterBottom
 								sx={{ color: "rgba(255,255,255,0.6)" }}
 							>
-								Whatever business you run, Creating
-								Invoices,Receipts and Quotations is made easy
-								with our app.
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia laborum quidem excepturi.5555
 							</Typography>
 						</Box>
 						<Box
