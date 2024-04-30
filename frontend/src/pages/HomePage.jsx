@@ -46,7 +46,7 @@ const HomePage = () => {
 								gutterBottom
 								sx={{ color: "rgba(255,255,255,0.6)" }}
 							>
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia laborum quidem excepturi.5555
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia laborum quidem excepturi.12345
 							</Typography>
 						</Box>
 						<Box

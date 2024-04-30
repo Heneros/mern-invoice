@@ -21,8 +21,6 @@ services:
       MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb/mernproject
     networks:
       - mern-invoice_mernshop
-    ports:
-      - "1998:1998"
 
 
 

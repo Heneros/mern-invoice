@@ -8,6 +8,9 @@ import HomePage from "./pages/HomePage";
 import { customTheme } from "./customTheme";
 import useTitle from "./hooks/useTitle";
 import NotFound from "./components/NotFound";
+import RegisterPage from "./features/auth/pages/RegisterPage";
+import VerifiedPage from "./features/auth/pages/VerifiedPage";
+import LoginPage from "./features/auth/pages/LoginPage";
 
 
 function App() {  
@@ -18,6 +21,9 @@ function App() {
     		<Routes>
         <Route path="/" element={<Layout />} />
           <Route index element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="auth/verify" element={<VerifiedPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NotFound />} />
        </Routes>
       </div>

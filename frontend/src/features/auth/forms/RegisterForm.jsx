@@ -84,7 +84,7 @@ const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
     return (
         <>
             <Formik
-            			initialValues={{
+            initialValues={{
                             firstName: "",
                             lastName: "",
                             email: "",
@@ -200,8 +200,6 @@ const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 											)}
 									</Stack>
                                 </Grid>
-                                
-
                                 <Grid item xs={12} md={6}>
                                     <Stack spacing={1}>
                                     <InputLabel htmlFor="username-signup">
