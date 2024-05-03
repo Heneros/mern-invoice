@@ -1,4 +1,5 @@
 import { baseApiSlice } from "../api/baseApiSlice";
+import { logOut } from "./authSlice";
 
 export const authApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -15,6 +16,20 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         method: "POST",
         body: credentials,
       }),
+    }),
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: "/auth/logout",
+        method: "GET",
+      }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          dispatch(logOut());
+          dispatch(baseApiSlice.util.resetApiState());
+        } catch (err) {
+          console.log(err);
+        }
+      },
     }),
     resendVerifyEmail: builder.mutation({
       query: (userEmail) => ({
@@ -46,4 +61,5 @@ export const {
   useResendVerifyEmailMutation,
   usePasswordResetRequestMutation,
   useResetPasswordMutation,
+  useLogoutUserMutation,
 } = authApiSlice;
