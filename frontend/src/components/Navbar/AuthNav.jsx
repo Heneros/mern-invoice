@@ -7,9 +7,13 @@ import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import { styled, useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { isExpired } from "react-jwt";
+import ProfileInfo from "./ProfileInfo";
 
+import { isExpired } from "react-jwt";
+import Logo from "./Logo";
+import MenuList from "./MenuList";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -76,8 +80,6 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-import React from "react";
-
 export default function AuthNav() {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -90,7 +92,7 @@ export default function AuthNav() {
   };
 
   const handleDrawerClose = () => {
-    setOpen(close);
+    setOpen(false);
   };
 
   return (
@@ -115,7 +117,9 @@ export default function AuthNav() {
             </IconButton>
             <Logo />
           </Toolbar>
-          <Box>{/* <ProfileInfo user={user} /> */}</Box>
+          <Box>
+            <ProfileInfo user={user} />
+          </Box>
         </Stack>
       </AppBar>
       <Drawer variant="permanent" open={open}>
