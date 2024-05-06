@@ -6,8 +6,6 @@ services:
     build: 
       context: .
       dockerfile: ./docker/local/express/Dockerfile
-      args:
-        BUILDKIT_INLINE_CACHE: 1
     volumes:
       - ./backend:/app
       - /app/node_modules

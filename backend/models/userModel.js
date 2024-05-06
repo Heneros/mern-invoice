@@ -39,12 +39,12 @@ const userSchema = new Schema(
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
-      validate: [
-        validator.isAlphanumeric,
-        "Last Name can only have Alphanumeric values. No special characters allowed",
-      ],
+      // validate: [
+      //   validator.isAlphanumeric,
+      //   "Last Name can only have Alphanumeric values. No special characters allowed",
+      // ],
     },
     password: {
       type: String,

@@ -10,10 +10,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProfileInfo from "./ProfileInfo";
-
 import { isExpired } from "react-jwt";
 import Logo from "./Logo";
 import MenuList from "./MenuList";
+import { logOut } from "../../features/auth/authSlice";
+import { toast } from "react-toastify";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -81,7 +83,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function AuthNav() {
-  const { user } = useSelector((state) => state.auth);
+  const { user, googleToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -94,6 +96,17 @@ export default function AuthNav() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    if (googleToken) {
+      const isMyTokenExpired = isExpired(googleToken);
+
+      if (isMyTokenExpired) {
+        dispatch(logOut());
+        navigate("/login");
+        toast.warning("Your session has expired, login again");
+      }
+    }
+  }, [navigate, dispatch, googleToken]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

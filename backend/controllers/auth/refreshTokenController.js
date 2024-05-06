@@ -60,7 +60,7 @@ const newAccessToken = asyncHandler(async (req, res) => {
         return res.sendStatus(403);
       }
 
-      const accessToke = jwt.sign(
+      const accessToken = jwt.sign(
         {
           id: existingUser._id,
           roles: existingUser.roles,
