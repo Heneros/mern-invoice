@@ -75,6 +75,11 @@ const userSchema = new Schema(
         "Your mobile phone number must begin with a '+', followed by your  country code then actual number e.g +254123456789",
       ],
     },
+    	provider: {
+			type: String,
+			required: true,
+			default: "email",
+		},
     address: String,
     city: String,
     country: String,

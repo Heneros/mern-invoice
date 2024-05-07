@@ -20,6 +20,8 @@ import { ROLES } from "./config/roles";
 import UserListPage from "./features/users/pages/UserListPage";
 import DashboardPage from "./pages/DashboardPage";
 import AuthRequired from "./components/AuthRequired";
+import ProfilePage from "./features/users/pages/ProfilePage";
+import EditProfileForm from "./features/users/pages/EditProfileForm";
 
 function App() {
   useTitle("MERN Project");
@@ -46,9 +48,12 @@ function App() {
           <Route path="auth/reset_password" element={<PasswordResetPage />} />
           <Route element={<AuthRequired allowedRoles={[ROLES.User]} />}>
             <Route path="dashboard" element={<DashboardPage />} />
+                        <Route path="profile" element={<ProfilePage />} />
+            <Route path="edit-profile" element={<EditProfileForm />} />
           </Route>
           <Route element={<AuthRequired allowedRoles={[ROLES.Admin]} />}>
             <Route path="users" element={<UserListPage />} />
+
           </Route>
 
           <Route path="*" element={<NotFound />} />
