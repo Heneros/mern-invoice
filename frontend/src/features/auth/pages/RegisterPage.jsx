@@ -10,7 +10,7 @@ import {
 import { FaUserCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import GoogleLogin from "../../../components/GoogleLogin";
-import StyledDivider from "../../../components/StyleDivider";
+import StyleDivider from "../../../components/StyleDivider";
 import AuthWrapper from "../forms/AuthWrapper";
 import RegisterForm from "../forms/RegisterForm";
 
@@ -36,7 +36,7 @@ const RegisterPage = () => (
             <FaUserCheck className="auth-svg" />
             <Typography variant="h1">Sign Up</Typography>
           </Box>
-          <StyledDivider />
+          <StyleDivider />
         </Grid>
         {/* registration form */}
         <RegisterForm />

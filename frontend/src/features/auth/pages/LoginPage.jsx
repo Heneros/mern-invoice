@@ -10,7 +10,7 @@ import {
 import { FaSignInAlt } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import GoogleLogin from "../../../components/GoogleLogin";
-import StyledDivider from '../../../components/StyleDivider';
+import StyleDivider from '../../../components/StyleDivider';
 import AuthWrapper from "../forms/AuthWrapper";
 import LoginForm from "../forms/LoginForm";
 
@@ -39,7 +39,7 @@ const LoginPage = () => {
 							<FaSignInAlt className="auth-svg" />
 							<Typography variant="h1">Log In</Typography>
 						</Box>
-						<StyledDivider />
+						<StyleDivider />
 					</Grid>
 					{/* login form */}
 					<LoginForm />
