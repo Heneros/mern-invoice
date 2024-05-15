@@ -26,6 +26,9 @@ import CustomerCreateForm from './features/customers/pages/CustomerCreateForm';
 import SingleCustomerPage from './features/customers/pages/SingleCustomerPage';
 import CustomerEditForm from "./features/customers/pages/CustomerEditForm";
 import CustomersPage from './features/customers/pages/CustomersPage';
+import SingleDocumentPage from './features/documents/pages/SingleDocumentPage';
+import DocCreateEditForm from './features/documents/pages/DocCreateEditForm';
+import DocumentsPage from './features/documents/pages/DocumentsPage copy';
 
 function App() {
   useTitle("MERN Project");
@@ -67,6 +70,20 @@ function App() {
 							path="edit-customer/:custId"
 							element={<CustomerEditForm />}
 						/>
+ 		<Route path="documents" element={<DocumentsPage />} />
+						<Route
+							path="create-doc"
+							element={<DocCreateEditForm />}
+						/>
+						<Route
+							path="edit-doc/:id"
+							element={<DocCreateEditForm />}
+						/>
+						<Route
+							path="document/:id"
+							element={<SingleDocumentPage />}
+						/>
+
           </Route>
           <Route element={<AuthRequired allowedRoles={[ROLES.Admin]} />}>
             <Route path="users" element={<UserListPage />} />

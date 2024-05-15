@@ -26,6 +26,8 @@ import googleAuth from "./config/passportSetup.js";
 
 
 const app = express();
+console.log(123)
+
 
 app.get("/", (req, res) => res.send("<h1>Hello World!5512</h1>"));
 const __dirname = path.resolve();
@@ -57,7 +59,7 @@ app.get("/api/v1/test", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", apiLimiter, userRoutes);
 app.use("/api/v1/customer", apiLimiter, customerRoutes);
-app.use("/api/v1/documents", apiLimiter, documentRoutes);
+app.use("/api/v1/document", apiLimiter, documentRoutes);
 app.use("/api/v1/upload", apiLimiter, uploadRoutes);
 
 // console.log(123);
