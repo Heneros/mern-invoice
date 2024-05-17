@@ -28,7 +28,7 @@ import CustomerEditForm from "./features/customers/pages/CustomerEditForm";
 import CustomersPage from './features/customers/pages/CustomersPage';
 import SingleDocumentPage from './features/documents/pages/SingleDocumentPage';
 import DocCreateEditForm from './features/documents/pages/DocCreateEditForm';
-import DocumentsPage from './features/documents/pages/DocumentsPage copy';
+import DocumentsPage from './features/documents/pages/DocumentsPage';
 
 function App() {
   useTitle("MERN Project");
