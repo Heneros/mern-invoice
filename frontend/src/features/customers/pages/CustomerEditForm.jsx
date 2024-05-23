@@ -14,7 +14,7 @@ import { GrDocumentUpdate } from "react-icons/gr";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import {
 	useGetSingleCustomerQuery,
 	useUpdateCustomerInfoMutation,
@@ -119,7 +119,7 @@ const CustomerEditForm = () => {
 						Go Back
 					</Button>
 				</Stack>
-				<StyleDivider />
+				<StyledDivider />
 			</Grid>
 			{isLoading ? (
 				<Spinner />

@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineBadge } from "react-icons/md";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import StyledTableCell from "../../../components/StyledTableCell";
 import StyledTableRow from "../../../components/StyledTableRow";
 import TablePaginationActions from "../../../components/TablePaginationActions";
@@ -124,7 +124,7 @@ const UserListPage = () => {
 				<MdOutlineBadge className="auth-svg" />
 				<Typography variant="h1"> Users</Typography>
 			</Box>
-			<StyleDivider />
+			<StyledDivider />
 			<Box
 				sx={{
 					display: "flex",

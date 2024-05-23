@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 import validator from "validator";
 import Spinner from "../../../components/Spinner";
 
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import useTitle from "../../../hooks/useTitle";
 
 import {
@@ -156,7 +156,7 @@ const EditProfileForm = () => {
 					Go Back
 				</Button>
 			</Box>
-			<StyleDivider />
+			<StyledDivider />
 
 			{isLoading ? (
 				<Spinner />

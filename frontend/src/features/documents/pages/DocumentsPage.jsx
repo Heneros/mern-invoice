@@ -27,7 +27,7 @@ import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import StyledTableCell from "../../../components/StyledTableCell";
 import StyledTableRow from "../../../components/StyledTableRow";
 import TablePaginationActions from "../../../components/TablePaginationActions";
@@ -115,7 +115,7 @@ const DocumentsPage = () => {
 				<Typography variant="h1">Documents</Typography>
 			</Box>
 
-			<StyleDivider />
+			<StyledDivider />
 
 			<Box
 				sx={{

@@ -32,7 +32,7 @@ import StyledTableRow from "../../../components/StyledTableRow";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import TablePaginationActions from "../../../components/TablePaginationActions";
 import "../../../styles/customer-button.css";
 
@@ -111,7 +111,7 @@ const CustomersPage = () => {
 				<FaUsers className="auth-svg" />
 				<Typography variant="h1">Customers</Typography>
 			</Stack>
-			<StyleDivider />
+			<StyledDivider />
 
 			<Grid>
 				<Grid item>

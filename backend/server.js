@@ -26,7 +26,7 @@ import googleAuth from "./config/passportSetup.js";
 
 
 const app = express();
-console.log(123)
+// console.log(123)
 
 
 app.get("/", (req, res) => res.send("<h1>Hello World!5512</h1>"));

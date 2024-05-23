@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import useTitle from "../../../hooks/useTitle";
 import {
   strengthColor,
@@ -129,7 +129,7 @@ const PasswordResetPage = () => {
                       <GrPowerReset className="auth-svg" />
                       <Typography variant="h2">Reset Password?</Typography>
                     </Box>
-                    <StyleDivider />
+                    <StyledDivider />
                   </Grid>
                   <Box
                     sx={{

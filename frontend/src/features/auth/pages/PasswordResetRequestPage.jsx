@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import useTitle from "../../../hooks/useTitle";
 import AuthWrapper from "../forms/AuthWrapper";
 import { usePasswordResetRequestMutation } from "../authApiSlice";
@@ -92,7 +92,7 @@ const PasswordResetRequestPage = () => {
                     {/* <GoMailRead className="auth-svg" /> */}
                     <Typography variant="h2">Enter Your Email</Typography>
                   </Box>
-                  <StyleDivider />
+                  <StyledDivider />
                 </Grid>
                 <Box
                   sx={{

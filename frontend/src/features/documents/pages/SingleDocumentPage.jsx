@@ -27,7 +27,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import NormalDivider from "../../../components/NormalDivider";
 import Spinner from "../../../components/Spinner";
 import StyledContainer from "../../../components/StyledContainer";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import StyledTableCell from "../../../components/StyledTableCell";
 import StyledTableRow from "../../../components/StyledTableRow";
 import { useGetUserProfileQuery } from "../../users/usersApiSlice.js";
@@ -110,7 +110,7 @@ const SingleDocumentPage = () => {
 				</Button>
 			</Box>
 
-			<StyleDivider />
+			<StyledDivider />
 
 			<Grid container spacing={2} sx={{ mt: "30px" }}>
 				<Grid item md={6}>

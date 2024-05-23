@@ -32,7 +32,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import { logOut } from "../../../features/auth/authSlice";
 import {
 	useDeleteMyAccountMutation,
@@ -138,7 +138,7 @@ const ProfilePage = () => {
 							/>
 						)}
 					</Box>
-					<StyleDivider />
+					<StyledDivider />
 					<Grid container>
 						<Grid item md={12} sm={6}>
 							<Stack direction="row" spacing={8}>

@@ -16,7 +16,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import useTitle from "../../../hooks/useTitle";
 import { useCreateCustomerMutation } from "../customersApiSlice";
 
@@ -133,7 +133,7 @@ const CustomerCreateForm = () => {
 												Go Back
 											</Button>
 										</Stack>
-										<StyleDivider />
+										<StyledDivider />
 									</Grid>
 									{isLoading ? (
 										<Spinner />

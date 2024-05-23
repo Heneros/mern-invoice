@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import useTitle from "../../../hooks/useTitle";
 import { useResendVerifyEmailMutation } from "../authApiSlice";
 import AuthWrapper from "../forms/AuthWrapper";
@@ -93,7 +93,7 @@ export const ResendEmailTokenPage = () => {
                       <MdOutgoingMail className="auth-svg" />
                       <Typography variant="h1">Resend</Typography>
                     </Box>
-                    <StyleDivider />
+                    <StyledDivider />
                   </Grid>
                 </Grid>
                 {isLoading ? (

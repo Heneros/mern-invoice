@@ -23,7 +23,7 @@ import {
 import { GrUser } from "react-icons/gr";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../../components/Spinner";
-import StyleDivider from "../../../components/StyleDivider";
+import StyledDivider from "../../../components/StyledDivider";
 import { useGetSingleCustomerQuery } from "../customersApiSlice";
 
 function capitalizeFirstLetter(string) {
@@ -74,7 +74,7 @@ const SingleCustomerPage = () => {
 					Go Back
 				</Button>
 			</Box>
-			<StyleDivider />
+			<StyledDivider />
 			{isLoading ? (
 				<Spinner />
 			) : (

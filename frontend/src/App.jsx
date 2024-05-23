@@ -18,7 +18,6 @@ import PasswordResetRequestPage from "./features/auth/pages/PasswordResetRequest
 import PasswordResetPage from "./features/auth/pages/PasswordResetPage";
 import { ROLES } from "./config/roles";
 import UserListPage from "./features/users/pages/UserListPage";
-import DashboardPage from "./pages/DashboardPage";
 import AuthRequired from "./components/AuthRequired";
 import ProfilePage from "./features/users/pages/ProfilePage";
 import EditProfileForm from "./features/users/pages/EditProfileForm";
@@ -29,6 +28,7 @@ import CustomersPage from './features/customers/pages/CustomersPage';
 import SingleDocumentPage from './features/documents/pages/SingleDocumentPage';
 import DocCreateEditForm from './features/documents/pages/DocCreateEditForm';
 import DocumentsPage from './features/documents/pages/DocumentsPage';
+import DashboardPage from './features/dashboard/pages/DashboardPage';
 
 function App() {
   useTitle("MERN Project");
@@ -54,7 +54,6 @@ function App() {
           />
           <Route path="auth/reset_password" element={<PasswordResetPage />} />
           <Route element={<AuthRequired allowedRoles={[ROLES.User]} />}>
-            <Route path="dashboard" element={<DashboardPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="edit-profile" element={<EditProfileForm />} />
             	<Route path="customers" element={<CustomersPage />} />
@@ -83,7 +82,7 @@ function App() {
 							path="document/:id"
 							element={<SingleDocumentPage />}
 						/>
-
+			<Route path="dashboard" element={<DashboardPage />} />
           </Route>
           <Route element={<AuthRequired allowedRoles={[ROLES.Admin]} />}>
             <Route path="users" element={<UserListPage />} />
